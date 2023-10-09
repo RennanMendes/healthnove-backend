@@ -47,7 +47,7 @@ public class User {
         this.lastName = userData.lastName();
         this.cpf = userData.cpf();
         this.phone = userData.phone();
-        this.birthDate = userData.brithDate();
+        this.birthDate = userData.birthDate();
         this.gender = userData.gender();
         this.email = userData.email();
         this.password = userData.password();
