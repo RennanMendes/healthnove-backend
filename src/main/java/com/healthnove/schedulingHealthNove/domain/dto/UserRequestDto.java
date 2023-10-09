@@ -23,7 +23,7 @@ public record UserRequestDto(
         String phone,
 
         @NotNull
-        Date brithDate,
+        Date birthDate,
 
         @NotNull
         Gender gender,
