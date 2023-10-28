@@ -25,22 +25,6 @@ public class SecurityConfigurations {
     @Autowired
     private SecurityFilter securityFilter;
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http.cors().and().csrf(csrf -> csrf.disable())
-//                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .authorizeHttpRequests(authorize -> authorize
-//                        .requestMatchers(antMatcher(HttpMethod.POST, "/login")).permitAll()
-//                        .requestMatchers(antMatcher(HttpMethod.POST, "/users")).permitAll()
-//                        .requestMatchers(antMatcher("/v3/api-docs/**")).permitAll()
-//                        .requestMatchers(antMatcher("/swagger-ui.html")).permitAll()
-//                        .requestMatchers(antMatcher("/swagger-ui/**")).permitAll()
-//                        .anyRequest().permitAll()
-//                )
-//                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
