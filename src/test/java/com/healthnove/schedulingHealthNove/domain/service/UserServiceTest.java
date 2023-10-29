@@ -21,6 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +46,7 @@ class UserServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -114,7 +115,7 @@ class UserServiceTest {
 
 
     private User createUser(){
-        Date date = new Date(2023, 06, 01);
+        Date date = new Date(2023, Calendar.JULY, 1);
         return new User(
                 ID,
                 "Paulo",
@@ -130,7 +131,7 @@ class UserServiceTest {
     }
 
     private UserRequestDto createUserRequestDto() {
-        Date date = new Date(2023, 06, 01);
+        Date date = new Date(2023, Calendar.JULY, 1);
         return new UserRequestDto(
                 "Paulo",
                 "Silva",

@@ -21,6 +21,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -42,12 +43,13 @@ class UserControllerTest {
     private final ObjectMapper objectMapper;
 
     @MockBean
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    UserControllerTest(MockMvc mockMvc, ObjectMapper objectMapper) {
+    UserControllerTest(MockMvc mockMvc, ObjectMapper objectMapper, UserService userService) {
         this.mockMvc = mockMvc;
         this.objectMapper = objectMapper;
+        this.userService = userService;
     }
 
     @Test
@@ -156,7 +158,7 @@ class UserControllerTest {
 
 
     private UserRequestDto createUserRequestDto(String name, String cpf) {
-        Date date = new Date(2023, 06, 01);
+        Date date = new Date(2023, Calendar.JULY, 1);
         return new UserRequestDto(
                 name,
                 "Silva",
@@ -169,7 +171,7 @@ class UserControllerTest {
     }
 
     private UserResponseDto createUserResponseDto() {
-        Date date = new Date(2023, 06, 01);
+        Date date = new Date(2023, Calendar.JULY, 1);
         return new UserResponseDto(
                 1L,
                 "Paulo",
