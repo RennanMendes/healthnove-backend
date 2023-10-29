@@ -18,11 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DoctorService {
 
-    @Autowired
-    private DoctorRepository repository;
+    private final DoctorRepository repository;
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public DoctorService(DoctorRepository repository, UserService userService) {
+        this.repository = repository;
+        this.userService = userService;
+    }
 
     public Page<DoctorResponseDto> findAll(Pageable page) {
         Page<Doctor> doctors = repository.findByActiveTrue(page);
