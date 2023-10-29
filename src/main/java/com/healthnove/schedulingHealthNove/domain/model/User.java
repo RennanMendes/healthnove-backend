@@ -68,6 +68,10 @@ public class User implements UserDetails {
         this.email = userData.email();
     }
 
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
     public void delete() {
         this.active = false;
     }

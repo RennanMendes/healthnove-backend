@@ -3,6 +3,7 @@ package com.healthnove.schedulingHealthNove.domain.service;
 import com.healthnove.schedulingHealthNove.domain.dto.UserRequestDto;
 import com.healthnove.schedulingHealthNove.domain.dto.UserResponseDto;
 import com.healthnove.schedulingHealthNove.domain.dto.UserUpdateDto;
+import com.healthnove.schedulingHealthNove.domain.enumerated.UserType;
 import com.healthnove.schedulingHealthNove.domain.exception.UserNotFoundException;
 import com.healthnove.schedulingHealthNove.domain.model.User;
 import com.healthnove.schedulingHealthNove.domain.repository.UserRepository;
@@ -55,9 +56,24 @@ public class UserService {
         user.delete();
     }
 
-    private User findByIdAndActiveTrue(Long id) {
+    public User findByIdAndActiveTrue(Long id) {
         return  repository.findByIdAndActiveTrue(id).orElseThrow(UserNotFoundException::new);
     }
+
+    @Transactional
+    public User setUserAsDoctor(Long id) {
+        User user = this.findByIdAndActiveTrue(id);
+        user.setUserType(UserType.DOCTOR);
+        return user;
+    }
+
+    @Transactional
+    public User setUserAsPatient(Long id) {
+        User user = this.findByIdAndActiveTrue(id);
+        user.setUserType(UserType.PATIENT);
+        return user;
+    }
+
 
     public String encryptPassword(String password){
         return passwordEncoder.encode(password);
