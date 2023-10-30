@@ -42,7 +42,7 @@ public class DoctorService {
         return doctors.map(DoctorResponseDto::new);
     }
 
-    public DoctorResponseDto created(Long id, DoctorRequestDto requestDto) {
+    public DoctorResponseDto create(Long id, DoctorRequestDto requestDto) {
         if (repository.existsByIdAndActiveTrue(id)) {
             throw new DoctorAlreadyRegisteredException();
         }

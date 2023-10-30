@@ -38,7 +38,7 @@ public class ErrorHandler {
 
     @ExceptionHandler(DoctorNotFoundException.class)
     public ResponseEntity handleDoctorNotFoundException(DoctorNotFoundException exception) {
-        return ResponseEntity.badRequest().body(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 
     private record validationDataError(String field, String message) {

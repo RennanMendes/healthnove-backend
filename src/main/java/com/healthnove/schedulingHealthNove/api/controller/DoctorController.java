@@ -23,35 +23,35 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @GetMapping
-    public ResponseEntity<Page<DoctorResponseDto>> findAll(Pageable page){
-        return ResponseEntity.ok( doctorService.findAll(page));
+    public ResponseEntity<Page<DoctorResponseDto>> findAll(Pageable page) {
+        return ResponseEntity.ok(doctorService.findAll(page));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DoctorResponseDto> findById(@PathVariable Long id){
+    public ResponseEntity<DoctorResponseDto> findById(@PathVariable Long id) {
         return ResponseEntity.ok(doctorService.findById(id));
     }
 
     @GetMapping("/specialties/{speciality}")
-    public ResponseEntity<Page<DoctorResponseDto>> findBySpeciality(Pageable page, @PathVariable Speciality speciality){
-        return ResponseEntity.ok( doctorService.findBySpeciality(page,speciality));
+    public ResponseEntity<Page<DoctorResponseDto>> findBySpeciality(Pageable page, @PathVariable Speciality speciality) {
+        return ResponseEntity.ok(doctorService.findBySpeciality(page, speciality));
     }
 
     @PostMapping("/{id}")
     public ResponseEntity<DoctorResponseDto> create(@PathVariable Long id, @Valid @RequestBody DoctorRequestDto requestDto, UriComponentsBuilder uriBuilder) {
-        DoctorResponseDto responseDto = doctorService.created(id, requestDto);
+        DoctorResponseDto responseDto = doctorService.create(id, requestDto);
         URI uri = uriBuilder.path("/doctors/{id}").buildAndExpand(responseDto.id()).toUri();
 
         return ResponseEntity.created(uri).body(responseDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DoctorResponseDto> update(@PathVariable Long id, @Valid @RequestBody DoctorUpdateDto requestDto){
+    public ResponseEntity<DoctorResponseDto> update(@PathVariable Long id, @Valid @RequestBody DoctorUpdateDto requestDto) {
         return ResponseEntity.ok().body(doctorService.update(id, requestDto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id) {
         doctorService.delete(id);
         return ResponseEntity.noContent().build();
     }
