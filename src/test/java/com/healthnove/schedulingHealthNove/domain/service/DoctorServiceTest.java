@@ -2,9 +2,11 @@ package com.healthnove.schedulingHealthNove.domain.service;
 
 import com.healthnove.schedulingHealthNove.domain.dto.DoctorRequestDto;
 import com.healthnove.schedulingHealthNove.domain.dto.DoctorResponseDto;
+import com.healthnove.schedulingHealthNove.domain.dto.DoctorUpdateDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Gender;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Speciality;
 import com.healthnove.schedulingHealthNove.domain.enumerated.UserType;
+import com.healthnove.schedulingHealthNove.domain.exception.DoctorAlreadyRegisteredException;
 import com.healthnove.schedulingHealthNove.domain.exception.DoctorNotFoundException;
 import com.healthnove.schedulingHealthNove.domain.model.Doctor;
 import com.healthnove.schedulingHealthNove.domain.model.User;
@@ -39,6 +41,9 @@ class DoctorServiceTest {
 
     @Mock
     private DoctorRepository repository;
+
+    @Mock
+    private UserService userService;
 
     @Test
     void shouldReturnDoctorResponseDto_whenFoundAll() {
@@ -87,6 +92,57 @@ class DoctorServiceTest {
         Page<DoctorResponseDto> pageResponse = doctorService.findBySpeciality(pageable, Speciality.CARDIOLOGY);
 
         Assertions.assertEquals(ExpectedPage, pageResponse);
+    }
+
+    @Test
+    void shouldReturnDoctorResponseDto_whenCreateCorrectly() {
+        DoctorRequestDto requestDto = doctorRequestDto();
+        Doctor doctor = createDoctor();
+        User user = createUser();
+        DoctorResponseDto expectedResponse = new DoctorResponseDto(doctor);
+
+        when(repository.existsByIdAndActiveTrue(ID)).thenReturn(false);
+        when(userService.setUserAsDoctor(ID)).thenReturn(user);
+        when(repository.save(any())).thenReturn(doctor);
+
+        DoctorResponseDto response = doctorService.create(ID, requestDto);
+
+        assertEquals(expectedResponse, response);
+    }
+
+    @Test
+    void shouldReturnDoctorAlreadyRegistered_whenDoctorAlreadyRegistered() {
+        DoctorRequestDto requestDto = doctorRequestDto();
+
+        when(repository.existsByIdAndActiveTrue(ID)).thenReturn(true);
+
+        DoctorAlreadyRegisteredException error = assertThrows(DoctorAlreadyRegisteredException.class,
+                () -> doctorService.create(ID, requestDto));
+
+        Assertions.assertNotNull(error);
+    }
+
+    @Test
+    void shouldReturnDoctorResponseDto_whenDoctorUpdateSuccessfully() {
+        DoctorUpdateDto requestDto = new DoctorUpdateDto(Speciality.CARDIOLOGY);
+        Doctor doctor = createDoctor();
+        DoctorResponseDto expectedResponse = new DoctorResponseDto(doctor);
+
+        when(repository.findByIdAndActiveTrue(ID)).thenReturn(Optional.of(doctor));
+
+        DoctorResponseDto response = doctorService.update(ID, requestDto);
+
+        assertEquals(expectedResponse, response);
+    }
+
+    @Test
+    void shouldReturn400_whenDoctorUpdateNotFound() {
+        DoctorUpdateDto requestDto = new DoctorUpdateDto(Speciality.CARDIOLOGY);
+
+        DoctorNotFoundException error = assertThrows(DoctorNotFoundException.class,
+                () -> doctorService.update(ID, requestDto));
+
+        Assertions.assertNotNull(error);
     }
 
     private Doctor createDoctor() {

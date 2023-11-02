@@ -48,9 +48,8 @@ public class DoctorService {
         }
 
         User user = userService.setUserAsDoctor(id);
-        Doctor doctor = repository.save(new Doctor(user, requestDto));
 
-        return new DoctorResponseDto(repository.save(doctor));
+        return new DoctorResponseDto(repository.save(new Doctor(user, requestDto)));
     }
 
     @Transactional
