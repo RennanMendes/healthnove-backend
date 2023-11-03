@@ -1,5 +1,6 @@
-package com.healthnove.schedulingHealthNove.domain.dto;
+package com.healthnove.schedulingHealthNove.domain.dto.doctor;
 
+import com.healthnove.schedulingHealthNove.domain.dto.user.UserResponseDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Speciality;
 import com.healthnove.schedulingHealthNove.domain.model.Doctor;
 

@@ -1,6 +1,6 @@
 package com.healthnove.schedulingHealthNove.domain.model;
 
-import com.healthnove.schedulingHealthNove.domain.dto.DoctorRequestDto;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorRequestDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Speciality;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

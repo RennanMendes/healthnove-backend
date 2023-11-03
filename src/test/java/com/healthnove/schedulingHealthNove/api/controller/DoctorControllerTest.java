@@ -1,7 +1,9 @@
 package com.healthnove.schedulingHealthNove.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.healthnove.schedulingHealthNove.domain.dto.*;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorRequestDto;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorResponseDto;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorUpdateDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Gender;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Speciality;
 import com.healthnove.schedulingHealthNove.domain.enumerated.UserType;

@@ -1,8 +1,8 @@
 package com.healthnove.schedulingHealthNove.domain.service;
 
-import com.healthnove.schedulingHealthNove.domain.dto.UserRequestDto;
-import com.healthnove.schedulingHealthNove.domain.dto.UserResponseDto;
-import com.healthnove.schedulingHealthNove.domain.dto.UserUpdateDto;
+import com.healthnove.schedulingHealthNove.domain.dto.user.UserRequestDto;
+import com.healthnove.schedulingHealthNove.domain.dto.user.UserResponseDto;
+import com.healthnove.schedulingHealthNove.domain.dto.user.UserUpdateDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Gender;
 import com.healthnove.schedulingHealthNove.domain.enumerated.UserType;
 import com.healthnove.schedulingHealthNove.domain.exception.UserNotFoundException;
@@ -106,7 +106,7 @@ class UserServiceTest {
     }
 
 
-    private User createUser(){
+    private User createUser() {
         Date date = new Date(2023, Calendar.JULY, 1);
         return new User(
                 ID,

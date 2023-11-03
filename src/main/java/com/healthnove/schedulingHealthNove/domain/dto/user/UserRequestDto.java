@@ -1,4 +1,4 @@
-package com.healthnove.schedulingHealthNove.domain.dto;
+package com.healthnove.schedulingHealthNove.domain.dto.user;
 
 import com.healthnove.schedulingHealthNove.domain.enumerated.Gender;
 import jakarta.validation.constraints.Email;

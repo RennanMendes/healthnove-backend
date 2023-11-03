@@ -1,8 +1,8 @@
 package com.healthnove.schedulingHealthNove.api.controller;
 
-import com.healthnove.schedulingHealthNove.domain.dto.DoctorRequestDto;
-import com.healthnove.schedulingHealthNove.domain.dto.DoctorResponseDto;
-import com.healthnove.schedulingHealthNove.domain.dto.DoctorUpdateDto;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorRequestDto;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorResponseDto;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorUpdateDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Speciality;
 import com.healthnove.schedulingHealthNove.domain.service.DoctorService;
 import jakarta.validation.Valid;

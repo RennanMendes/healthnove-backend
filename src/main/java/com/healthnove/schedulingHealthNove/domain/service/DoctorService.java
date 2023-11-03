@@ -1,8 +1,8 @@
 package com.healthnove.schedulingHealthNove.domain.service;
 
-import com.healthnove.schedulingHealthNove.domain.dto.DoctorRequestDto;
-import com.healthnove.schedulingHealthNove.domain.dto.DoctorResponseDto;
-import com.healthnove.schedulingHealthNove.domain.dto.DoctorUpdateDto;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorRequestDto;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorResponseDto;
+import com.healthnove.schedulingHealthNove.domain.dto.doctor.DoctorUpdateDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Speciality;
 import com.healthnove.schedulingHealthNove.domain.exception.DoctorAlreadyRegisteredException;
 import com.healthnove.schedulingHealthNove.domain.exception.DoctorNotFoundException;
@@ -66,7 +66,7 @@ public class DoctorService {
         doctor.setActive(false);
     }
 
-    private Doctor findDoctorById(Long id) {
+    public Doctor findDoctorById(Long id) {
         return repository.findByIdAndActiveTrue(id).orElseThrow(DoctorNotFoundException::new);
     }
 

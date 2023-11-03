@@ -1,6 +1,6 @@
 package com.healthnove.schedulingHealthNove.api.controller;
 
-import com.healthnove.schedulingHealthNove.domain.dto.LoginDTO;
+import com.healthnove.schedulingHealthNove.domain.dto.login.LoginDTO;
 import com.healthnove.schedulingHealthNove.infra.dto.TokenJwtDTO;
 import com.healthnove.schedulingHealthNove.domain.model.User;
 import com.healthnove.schedulingHealthNove.infra.security.TokenService;

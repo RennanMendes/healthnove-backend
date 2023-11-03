@@ -1,7 +1,7 @@
 package com.healthnove.schedulingHealthNove.domain.model;
 
-import com.healthnove.schedulingHealthNove.domain.dto.UserRequestDto;
-import com.healthnove.schedulingHealthNove.domain.dto.UserUpdateDto;
+import com.healthnove.schedulingHealthNove.domain.dto.user.UserRequestDto;
+import com.healthnove.schedulingHealthNove.domain.dto.user.UserUpdateDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Gender;
 import com.healthnove.schedulingHealthNove.domain.enumerated.UserType;
 import jakarta.persistence.*;

@@ -1,8 +1,8 @@
 package com.healthnove.schedulingHealthNove.domain.service;
 
-import com.healthnove.schedulingHealthNove.domain.dto.UserRequestDto;
-import com.healthnove.schedulingHealthNove.domain.dto.UserResponseDto;
-import com.healthnove.schedulingHealthNove.domain.dto.UserUpdateDto;
+import com.healthnove.schedulingHealthNove.domain.dto.user.UserRequestDto;
+import com.healthnove.schedulingHealthNove.domain.dto.user.UserResponseDto;
+import com.healthnove.schedulingHealthNove.domain.dto.user.UserUpdateDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.UserType;
 import com.healthnove.schedulingHealthNove.domain.exception.UserNotFoundException;
 import com.healthnove.schedulingHealthNove.domain.model.User;
@@ -35,7 +35,7 @@ public class UserService {
         return new UserResponseDto(this.findByIdAndActiveTrue(id));
     }
 
-    public UserResponseDto create(UserRequestDto userData){
+    public UserResponseDto create(UserRequestDto userData) {
         User user = new User(userData);
         user.setPassword(encryptPassword(userData.password()));
         return new UserResponseDto(repository.save(user));
@@ -56,7 +56,7 @@ public class UserService {
     }
 
     public User findByIdAndActiveTrue(Long id) {
-        return  repository.findByIdAndActiveTrue(id).orElseThrow(UserNotFoundException::new);
+        return repository.findByIdAndActiveTrue(id).orElseThrow(UserNotFoundException::new);
     }
 
     @Transactional
@@ -74,7 +74,7 @@ public class UserService {
     }
 
 
-    public String encryptPassword(String password){
+    public String encryptPassword(String password) {
         return passwordEncoder.encode(password);
     }
 }
