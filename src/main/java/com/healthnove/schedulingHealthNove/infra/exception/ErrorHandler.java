@@ -2,6 +2,7 @@ package com.healthnove.schedulingHealthNove.infra.exception;
 
 import com.healthnove.schedulingHealthNove.domain.exception.DoctorAlreadyRegisteredException;
 import com.healthnove.schedulingHealthNove.domain.exception.DoctorNotFoundException;
+import com.healthnove.schedulingHealthNove.domain.exception.UnscheduledAppointmentException;
 import com.healthnove.schedulingHealthNove.domain.exception.UserNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,11 @@ public class ErrorHandler {
 
     @ExceptionHandler(DoctorNotFoundException.class)
     public ResponseEntity handleDoctorNotFoundException(DoctorNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler(UnscheduledAppointmentException.class)
+    public ResponseEntity handleUnscheduledAppointment(UnscheduledAppointmentException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 
