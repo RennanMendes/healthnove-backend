@@ -8,6 +8,7 @@ import com.healthnove.schedulingHealthNove.domain.model.Appointment;
 import com.healthnove.schedulingHealthNove.domain.model.Doctor;
 import com.healthnove.schedulingHealthNove.domain.model.User;
 import com.healthnove.schedulingHealthNove.domain.repository.AppointmentRepository;
+import com.healthnove.schedulingHealthNove.domain.validations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,14 +19,18 @@ import java.util.stream.Stream;
 @Service
 public class AppointmentService {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final DoctorService doctorService;
+    private final AppointmentRepository repository;
+    private final List<AppointmentSchedulingValidator> validators;
 
     @Autowired
-    private DoctorService doctorService;
-
-    @Autowired
-    private AppointmentRepository repository;
+    public AppointmentService(UserService userService, DoctorService doctorService, AppointmentRepository repository, List<AppointmentSchedulingValidator> validators) {
+        this.userService = userService;
+        this.doctorService = doctorService;
+        this.repository = repository;
+        this.validators = validators;
+    }
 
     public AppointmentResponseDto findAppointmentById(Long id) {
         return new AppointmentResponseDto(this.findById(id));
@@ -42,6 +47,8 @@ public class AppointmentService {
     }
 
     public AppointmentResponseDto scheduleAppointment(AppointmentRequestDto requestDto) {
+        validators.forEach(v -> v.validate(requestDto));
+
         User user = userService.findByIdAndActiveTrue(requestDto.userId());
         Doctor doctor = doctorService.findDoctorById(requestDto.doctorId());
 
