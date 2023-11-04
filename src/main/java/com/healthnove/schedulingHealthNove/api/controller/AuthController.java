@@ -4,6 +4,7 @@ import com.healthnove.schedulingHealthNove.domain.dto.login.LoginDTO;
 import com.healthnove.schedulingHealthNove.infra.dto.TokenJwtDTO;
 import com.healthnove.schedulingHealthNove.domain.model.User;
 import com.healthnove.schedulingHealthNove.infra.security.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class AuthController {
     private TokenService tokenService;
 
     @PostMapping
+    @Operation(summary = "Autentica o usuário")
     public ResponseEntity login(@RequestBody @Valid LoginDTO loginDTO) {
         var authenticationToken = new UsernamePasswordAuthenticationToken(loginDTO.email(), loginDTO.password());
         var authentication = manager.authenticate(authenticationToken);
