@@ -117,7 +117,7 @@ class DoctorControllerTest {
 
         ResultActions resultActions = mockMvc.perform(post(BASE_URL + "/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(responseDto)));
+                .content(objectMapper.writeValueAsString(requestDto)));
 
         String jsonResponse = resultActions.andReturn().getResponse().getContentAsString();
 
