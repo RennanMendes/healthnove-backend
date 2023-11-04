@@ -1,9 +1,6 @@
 package com.healthnove.schedulingHealthNove.infra.exception;
 
-import com.healthnove.schedulingHealthNove.domain.exception.DoctorAlreadyRegisteredException;
-import com.healthnove.schedulingHealthNove.domain.exception.DoctorNotFoundException;
-import com.healthnove.schedulingHealthNove.domain.exception.UnscheduledAppointmentException;
-import com.healthnove.schedulingHealthNove.domain.exception.UserNotFoundException;
+import com.healthnove.schedulingHealthNove.domain.exception.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +40,13 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler(UnscheduledAppointmentException.class)
-    public ResponseEntity handleUnscheduledAppointment(UnscheduledAppointmentException exception) {
+    public ResponseEntity handleUnscheduledAppointmentException(UnscheduledAppointmentException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler(ExceptionValidation.class)
+    public ResponseEntity businessRuleError(ExceptionValidation exception) {
+        return ResponseEntity.badRequest().body(exception.getMessage());
     }
 
     private record validationDataError(String field, String message) {
