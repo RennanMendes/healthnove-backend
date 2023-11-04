@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tb_appointment")
@@ -22,7 +22,7 @@ public class Appointment {
     private Long id;
 
     @Column(name = "appointment_date")
-    private Date date;
+    private LocalDateTime date;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -35,7 +35,7 @@ public class Appointment {
     @JoinColumn(name = "id_user")
     private User user;
 
-    public Appointment(Date date, User user, Doctor doctor) {
+    public Appointment(LocalDateTime date, User user, Doctor doctor) {
         this.date = date;
         this.doctor = doctor;
         this.user = user;

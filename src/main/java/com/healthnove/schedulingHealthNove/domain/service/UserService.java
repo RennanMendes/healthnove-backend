@@ -73,7 +73,6 @@ public class UserService {
         return user;
     }
 
-
     public String encryptPassword(String password) {
         return passwordEncoder.encode(password);
     }

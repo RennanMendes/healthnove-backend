@@ -5,11 +5,11 @@ import com.healthnove.schedulingHealthNove.domain.dto.user.UserResponseDto;
 import com.healthnove.schedulingHealthNove.domain.enumerated.Status;
 import com.healthnove.schedulingHealthNove.domain.model.Appointment;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public record AppointmentResponseDto(
     Long id,
-    Date date,
+    LocalDateTime date,
     Status status,
     DoctorResponseDto doctorDto,
     UserResponseDto userDto

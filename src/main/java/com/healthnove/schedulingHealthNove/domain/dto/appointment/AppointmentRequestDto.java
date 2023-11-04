@@ -1,17 +1,13 @@
 package com.healthnove.schedulingHealthNove.domain.dto.appointment;
 
-import com.healthnove.schedulingHealthNove.domain.enumerated.Speciality;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public record AppointmentRequestDto(
-
         @NotNull
-        Speciality speciality,
+        LocalDateTime appointmentDate,
 
-        @NotNull
-        Date appointmentDate,
         Long doctorId,
 
         @NotNull
