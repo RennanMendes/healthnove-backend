@@ -47,7 +47,4 @@ public class AppointmentController {
         return ResponseEntity.noContent().build();
     }
 
-
-
-
 }
