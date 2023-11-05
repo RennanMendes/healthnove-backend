@@ -76,6 +76,9 @@ Também foi utilizado o design pattern Strategy de forma a isolar as regras de n
 
 A escolha do banco de dados relacional para este projeto é devido a sua modelagem organizada, coesão, integridade e segurança dos dados.
 
+###  Diagrama de Entidade-Relacionamento (DER)
+![DER database](./src/main/resources/static/heafnove.png)
+
 ### Alguns dos princípios utilizados no desenvolvimento do projeto:
 `S.O.L.I.D`
 
