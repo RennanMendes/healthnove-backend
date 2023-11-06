@@ -14,7 +14,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -27,8 +31,9 @@ public class SecurityConfigurations {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
+        return http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(antMatcher(HttpMethod.POST, "/login")).permitAll()
@@ -40,6 +45,19 @@ public class SecurityConfigurations {
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("*"));
+        corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+
+        return source;
     }
 
     @Bean
