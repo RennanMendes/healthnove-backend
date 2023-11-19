@@ -17,7 +17,7 @@ public class AppointmentTimeValidator implements AppointmentSchedulingValidator 
         var differenceInMinutes = Duration.between(now, appointmentDate).toMinutes();
 
         if (differenceInMinutes < 60) {
-            throw new ExceptionValidation("The appointment must be scheduled at least 1 hour in advance!");
+            throw new ExceptionValidation("A consulta deve ser agendada com pelo menos 1 hora de antecedência!");
         }
     }
 }

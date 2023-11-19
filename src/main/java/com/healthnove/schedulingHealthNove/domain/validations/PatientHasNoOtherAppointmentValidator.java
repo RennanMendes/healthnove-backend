@@ -26,7 +26,7 @@ public class PatientHasNoOtherAppointmentValidator implements AppointmentSchedul
         var hasAnotherAppointment = repository.existsByUserIdAndDateBetween(requestDto.userId(), firstHour, lastHour);
 
         if (hasAnotherAppointment) {
-            throw new ExceptionValidation("The patient already has an appointment scheduled for that day");
+            throw new ExceptionValidation("O paciente já tem consulta agendada para esse dia!");
         }
     }
 }
