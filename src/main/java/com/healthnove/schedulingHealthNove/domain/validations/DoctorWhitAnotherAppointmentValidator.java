@@ -21,7 +21,7 @@ public class DoctorWhitAnotherAppointmentValidator implements AppointmentSchedul
         var hasAnotherAppointment = repository.existsByDoctorIdAndDate(requestDto.doctorId(), requestDto.appointmentDate());
 
         if (hasAnotherAppointment) {
-            throw new ExceptionValidation("Doctor already has another appointment at this time");
+            throw new ExceptionValidation("Médico já possui outra consulta neste horário!");
         }
     }
 

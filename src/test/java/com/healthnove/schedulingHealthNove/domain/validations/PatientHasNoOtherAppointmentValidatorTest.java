@@ -22,7 +22,7 @@ class PatientHasNoOtherAppointmentValidatorTest {
     private AppointmentRepository repository;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         validator = new PatientHasNoOtherAppointmentValidator(repository);
     }
 

@@ -19,7 +19,7 @@ public class OpeningHoursValidator implements AppointmentSchedulingValidator {
         Boolean afterClosing = appointmentDate.getHour() > 18;
 
         if (isSunday || beforeOpening || afterClosing) {
-            throw new ExceptionValidation("scheduling outside of clinic opening hours");
+            throw new ExceptionValidation("Agendamento fora do horário de funcionamento!");
         }
     }
 }
